@@ -1,4 +1,4 @@
-import { useEffect, FormEventHandler } from 'react';
+import { useEffect, FormEventHandler, useState } from 'react';
 import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
@@ -7,6 +7,9 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
+const unauthorizedTitle = '⚠️ Unauthorized Notification'
+const unauthorizedMessage = 'Sorry, you are not authorized to login. Please, verify both your username and password.'
+
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
@@ -14,11 +17,14 @@ export default function Login({ status, canResetPassword }: { status?: string, c
         remember: false,
     });
 
+		const [unauthorized, setUnauthorized] = useState(false);
+
     useEffect(() => {
-        return () => {
-            reset('password');
-        };
-    }, []);
+
+			setUnauthorized(errors?.email !== undefined)
+
+        return;
+    }, [errors]);
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -92,6 +98,19 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                     </PrimaryButton>
                 </div>
             </form>
+
+
+						{ unauthorized && 
+						(<div className="flex flex-col gap-4 absolute bottom-5 left-0 w-full text-center">
+								<h3 className='text-yellow-400 dark:text-yellow-200'>
+									{unauthorizedTitle}
+								</h3>
+
+								<p className='text-yellow-400 dark:text-yellow-200'>
+									{unauthorizedMessage}
+								</p>
+						</div>)
+						}
         </GuestLayout>
     );
 }
