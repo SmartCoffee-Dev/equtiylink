@@ -51,3 +51,16 @@ php artisan serve
 npm run dev
 ```
 
+8. Ejecutar los seeders de la base de datos
+
+```
+php artisan db:seed
+```
+
+## Uso (Local)
+
+Cuando el proyecto se inicializa por primera vez, el único 
+usuario creado `super.equitylink@yopmail.com`. Para ingresar a la app por primera vez, se debe usar dicho usuario con la contraseña
+`password`.
+
+Acto seguido, debe cambiarse la contraseña de dicho usuario. Dicha acción podrá realizarse dentro de `${PROTOCOL}://${DOMAIN}:${PORT}/profile`.

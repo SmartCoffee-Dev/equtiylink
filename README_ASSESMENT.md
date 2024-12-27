@@ -1,8 +1,8 @@
 # Ejercicio Fullstack 2024 – Equity Link
 
-- [ ] Crear una app que use como frontend ReactJS y como backend una API desarrollada en Laravel
+- [x] Crear una app que use como frontend ReactJS y como backend una API desarrollada en Laravel
 
-- [ ] La aplicación consiste en un dashboard al que se puede entrar por autenticación de email y
+- [x] La aplicación consiste en un dashboard al que se puede entrar por autenticación de email y
 contraseña.
 
 - [ ] Se debe crear una mecánica para manejar los mensajes de error de autorización para mostrarse en
