@@ -6,8 +6,9 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { Alert } from '@nextui-org/react';
 
-const unauthorizedTitle = '⚠️ Unauthorized Notification'
+const unauthorizedTitle = 'Unauthorized'
 const unauthorizedMessage = 'Sorry, you are not authorized to login. Please, verify both your username and password.'
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
@@ -99,18 +100,16 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                 </div>
             </form>
 
-
-						{ unauthorized && 
-						(<div className="flex flex-col gap-4 absolute bottom-5 left-0 w-full text-center">
-								<h3 className='text-yellow-400 dark:text-yellow-200'>
-									{unauthorizedTitle}
-								</h3>
-
-								<p className='text-yellow-400 dark:text-yellow-200'>
-									{unauthorizedMessage}
-								</p>
-						</div>)
-						}
+						<div className='mt-4'>
+								<Alert
+									color="warning"
+									description={unauthorizedMessage}
+									isVisible={unauthorized}
+									title={unauthorizedTitle}
+									variant="faded"
+									onClose={() => setUnauthorized(false)}
+								/>
+						</div>
         </GuestLayout>
     );
 }
