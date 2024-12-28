@@ -1,4 +1,4 @@
-import { useEffect, FormEventHandler } from 'react';
+import { useEffect, FormEventHandler, useState } from 'react';
 import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
@@ -6,6 +6,10 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { Alert } from '@nextui-org/react';
+
+const unauthorizedTitle = 'Unauthorized'
+const unauthorizedMessage = 'Sorry, you are not authorized to login. Please, verify both your username and password.'
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -14,11 +18,14 @@ export default function Login({ status, canResetPassword }: { status?: string, c
         remember: false,
     });
 
+		const [unauthorized, setUnauthorized] = useState(false);
+
     useEffect(() => {
-        return () => {
-            reset('password');
-        };
-    }, []);
+
+			setUnauthorized(errors?.email !== undefined)
+
+        return;
+    }, [errors]);
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -92,6 +99,17 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                     </PrimaryButton>
                 </div>
             </form>
+
+						<div className='mt-4'>
+								<Alert
+									color="warning"
+									description={unauthorizedMessage}
+									isVisible={unauthorized}
+									title={unauthorizedTitle}
+									variant="faded"
+									onClose={() => setUnauthorized(false)}
+								/>
+						</div>
         </GuestLayout>
     );
 }

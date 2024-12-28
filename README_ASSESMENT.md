@@ -5,7 +5,7 @@
 - [x] La aplicación consiste en un dashboard al que se puede entrar por autenticación de email y
 contraseña.
 
-- [ ] Se debe crear una mecánica para manejar los mensajes de error de autorización para mostrarse en
+- [x] Se debe crear una mecánica para manejar los mensajes de error de autorización para mostrarse en
 el back. Por ejemplo con un Toast.
 
 - [ ] Al entrar en la aplicación. Debe mostrar un layout con una barra lateral que maneje el menú principal
