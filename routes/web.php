@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+		Route::get(uri: '/management/users', action: [UserManagementController::class, 'index'])->name('user.list');
 		Route::get(uri: '/management/users/create', action: [UserManagementController::class, 'create'])->name('user.create');
 		Route::post(uri: '/management/users', action: [UserManagementController::class, 'store'])->name('user.store');
 });

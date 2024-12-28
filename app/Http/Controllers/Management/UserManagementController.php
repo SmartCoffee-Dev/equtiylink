@@ -11,6 +11,17 @@ use Inertia\Inertia;
 
 class UserManagementController extends Controller
 {
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		return Inertia::render(
+			component: 'Management/UserManagement',
+			props: [
+				'users' => User::all()
+			]);
+	}
 
 	/**
 	 * Show the form for creating a new resource.
