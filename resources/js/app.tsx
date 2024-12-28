@@ -17,7 +17,7 @@ createInertiaApp({
 
         root.render(
 
-					<NextUIProvider>
+					<NextUIProvider className='dark'>
 						<App {...props} />
 					</NextUIProvider>
 			);
