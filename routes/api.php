@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PermissionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('auth')->group(function() {
+
+	Route::get(uri: '/permissions', action: [PermissionController::class, 'index'])->name('api.permissions.index');
 });
