@@ -1,7 +1,15 @@
+type UserId = number;
+
 interface BaseUser {
-	id: number,
+	id: UserId,
 	email: string,
 	name: string
 }
 
-export { type BaseUser }
+interface UserWtPermissions extends BaseUser {
+
+	permissions: any[]
+
+}
+
+export { type BaseUser, type UserWtPermissions, type UserId }

@@ -19,7 +19,7 @@ class UserManagementController extends Controller
 		return Inertia::render(
 			component: 'Management/UserManagement',
 			props: [
-				'users' => User::all()
+				'users' => User::with(relations: ['permissions'])->get()
 			]);
 	}
 
