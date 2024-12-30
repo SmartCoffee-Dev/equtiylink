@@ -10,10 +10,8 @@ export const getPermissions: () => Promise<Permission[]> = () => {
 }
 
 export const assignPermissionTo:
-	(userId: UserId, permissionId: PermissionId | null) => Promise<void> =
-	(userId: UserId, permissionId: PermissionId | null) => {
-
-		if (permissionId === null) return Promise.resolve();
+	(userId: UserId, permissionId: PermissionId) => Promise<Permission[]> =
+	(userId: UserId, permissionId: PermissionId) => {
 
 		return fetch(route('api.user-permission.store', {
 			user: userId,
@@ -24,6 +22,7 @@ export const assignPermissionTo:
 				'Accept': 'application/json'
 			},
 		})
-			.then(httpResponse => { return });
+			.then(httpResponse => httpResponse.json())
+			.then(jsonResponse => jsonResponse.data as Permission[]);
 
 	}

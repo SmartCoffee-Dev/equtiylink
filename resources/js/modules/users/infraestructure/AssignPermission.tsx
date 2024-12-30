@@ -1,35 +1,46 @@
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react"
 import { UserId } from "../domain/User.interface"
-import { useEffect, useState } from "react"
+import { Key, useEffect, useState } from "react"
 import { Permission, PermissionId } from "../domain/Permission.interface"
 import { assignPermissionTo, getPermissions } from "../application/PermissionActions"
 
 interface AssignPermissionProps {
 
-	userId: UserId
+	userId: UserId,
+
+	permissionsStateSetter: React.Dispatch<React.SetStateAction<Permission[]>>
 
 }
 
 export const AssignPermission = (props: AssignPermissionProps) => {
 
-	const { userId } = props
+	const { userId, permissionsStateSetter } = props
 
-	const [permissions, setPermissions] = useState<Permission[]>([])
+	const [availablePermissions, setAvailablePermissions] = useState<Permission[]>([])
+
+	const handleSelectionChange = (key: Key | null) => {
+
+		if (key === null) return;
+
+		assignPermissionTo(userId, key as PermissionId)
+			.then(newUserPermissions => permissionsStateSetter(newUserPermissions));
+
+	}
 
 	useEffect(() => {
 		getPermissions()
-			.then(fetchedPermissions => setPermissions(fetchedPermissions))
+			.then(fetchedPermissions => setAvailablePermissions(fetchedPermissions))
 	}, [])
 
 	return (<>
 		<Autocomplete
 			className="max-w-xs"
-			defaultItems={permissions}
+			defaultItems={availablePermissions}
 			placeholder="➕ Permission"
 			title="Add Permission"
 			aria-label="Add Permission"
 			role="dialog"
-			onSelectionChange={(key) => assignPermissionTo(userId, key as PermissionId)}
+			onSelectionChange={handleSelectionChange}
 		>
 			{(permission) => <AutocompleteItem key={permission.id}>{permission.name}</AutocompleteItem>}
 		</Autocomplete>

@@ -3,12 +3,12 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from "@inertiajs/react";
 import { UserManagementHeader } from "@/modules/users/infraestructure/UserManagementHeader";
 import { UsersList } from "@/modules/users/infraestructure/UsersList";
-import { BaseUser } from "@/modules/users/domain/User.interface";
+import { type UserWtPermissions } from "@/modules/users/domain/User.interface";
 
 
 interface UserManagementPageProps extends PageProps {
 
-	users: BaseUser[]
+	users: UserWtPermissions[]
 
 }
 

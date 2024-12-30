@@ -1,27 +1,29 @@
 import { Chip } from "@nextui-org/react"
 import { type UserId } from "../domain/User.interface"
+import { AssignPermission } from "./AssignPermission"
+import { Permission } from "../domain/Permission.interface"
+import { useState } from "react"
 
 interface UserPermissionsProps {
 	userId: UserId,
-	permissions: any[]
+	initialPermissions: Permission[]
 }
 
 export const ChipUserPermissions = (props: UserPermissionsProps) => {
 
-	const { userId, permissions } = props
+	const { userId, initialPermissions } = props
+	const [permissions, setPermissions] = useState(initialPermissions)
 
 	return (
-		<>
+		<div className="flex flex-wrap gap-4">
 			{permissions.map(permission => (
-				<Chip>
-					{permission}
+				<Chip key={`${userId}-${permission.id}`}>
+					{permission.name}
 				</Chip>
 			))}
 
-			<Chip aria-label="Add permission" title="Add permission" className="opacity-80 hover:opacity-100 hover:cursor-pointer">
-				➕ Permission
-			</Chip>
-		</>
+			<AssignPermission userId={userId} permissionsStateSetter={setPermissions} />
+		</div>
 	)
 
 }

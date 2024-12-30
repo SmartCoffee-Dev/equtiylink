@@ -31,7 +31,7 @@ class UserPermissionController extends Controller
 
 		$user->givePermissionTo($permission->name);
 
-		return new PermissionResource($permission);
+		return PermissionResource::collection($user->permissions);
 		
 	}
 
