@@ -1,6 +1,5 @@
 import { type UserWtPermissions } from "../domain/User.interface"
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
-import { useEffect, useState } from 'react';
 import { ChipUserPermissions } from "./ChipUserPermissions";
 
 interface UsersListProps {
@@ -12,15 +11,9 @@ interface UsersListProps {
 const UsersList = (props: UsersListProps) => {
 
 	const { users } = props
-	const [activeKeys, setActiveKeys] = useState<string[]>([])
-
-	useEffect(() => {
-		const newActiveKeys = users.map(user => user.id.toString())
-		setActiveKeys(newActiveKeys)
-	}, [users])
 
 	return (
-		<Accordion selectedKeys={activeKeys}>
+		<Accordion>
 			{users.map(user => (
 				<AccordionItem
 					key={user.id.toString()}
@@ -28,7 +21,7 @@ const UsersList = (props: UsersListProps) => {
 					subtitle={user.email}
 					title={user.name}
 				>
-					<ChipUserPermissions userId={user.id} permissions={user.permissions} />
+					<ChipUserPermissions userId={user.id} initialPermissions={user.permissions} />
 				</AccordionItem>
 			))}
 		</Accordion>
