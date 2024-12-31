@@ -9,7 +9,9 @@ contraseña.
 el back. Por ejemplo con un Toast.
 
 - [ ] Al entrar en la aplicación. Debe mostrar un layout con una barra lateral que maneje el menú principal
-y una cabecera donde se muestre el nombre del usuario. Se debe implementar la mecánica de roles
+y una cabecera donde se muestre el nombre del usuario.
+
+- [x] Se debe implementar la mecánica de roles
 y permisos de Spatie para mostrar u ocultar un botón en la cabecera que muestre la sección de
 administración de usuarios.
 

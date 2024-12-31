@@ -4,6 +4,7 @@ use App\Http\Controllers\Management\PermissionManagementController;
 use App\Http\Controllers\Management\UserManagementController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -28,7 +29,16 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+		/**
+		 * @var \App\Models\User $authenticatedUser
+		 */
+		$authenticatedUser = Auth::user();
+
+		return Inertia::render('Dashboard', [
+			'canCreateUser' => $authenticatedUser->can('user_create'),
+			'canCreatePermission' => $authenticatedUser->can('permission_create'),
+			'canAssignPermission' => $authenticatedUser->can('user_permission_create'),
+		]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
