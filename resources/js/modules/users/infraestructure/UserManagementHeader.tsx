@@ -10,7 +10,8 @@ export const UserManagementHeader = () => {
 
 			<div>
 
-				<Link isBlock color='foreground' href={route('user.create')}>➕ User</Link>
+				<Link isBlock color='foreground' href={route('permission.create')} title='Create Permission' aria-label='Create New Permission' role='link'>➕ Permission</Link>
+				<Link isBlock color='foreground' href={route('user.create')} title='Create User' aria-label='Create New User' role='link'>➕ User</Link>
 
 			</div>
 

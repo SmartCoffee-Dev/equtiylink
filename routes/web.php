@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Management\PermissionManagementController;
 use App\Http\Controllers\Management\UserManagementController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
 		Route::get(uri: '/management/users', action: [UserManagementController::class, 'index'])->name('user.list');
 		Route::get(uri: '/management/users/create', action: [UserManagementController::class, 'create'])->name('user.create');
 		Route::post(uri: '/management/users', action: [UserManagementController::class, 'store'])->name('user.store');
+		
+		Route::get(uri: '/management/permissions/create', action: [PermissionManagementController::class, 'create'])->name('permission.create');
+		Route::post(uri: '/management/permissions', action: [PermissionManagementController::class, 'store'])->name('permission.store');
 });
 
 require __DIR__.'/auth.php';
