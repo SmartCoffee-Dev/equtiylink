@@ -38,12 +38,16 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
-        ],
-
-        'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+					],
+					
+				'api' => [
+						// \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+						\App\Http\Middleware\EncryptCookies::class,
+						\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+						\Illuminate\Session\Middleware\StartSession::class,
+						\Illuminate\View\Middleware\ShareErrorsFromSession::class,
+						\Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
