@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -28,6 +30,17 @@ class UserManagementController extends Controller
 	 */
 	public function create()
 	{
+		/**
+		 * @var \App\Models\User $authenticatedUser
+		 */
+		$authenticatedUser = Auth::user();
+	
+		$canCreateUser = $authenticatedUser->can('user_create');
+	
+		if (!$canCreateUser) {
+			throw new AuthorizationException(message: 'Sorry, you are not allowed to create users.');
+		}
+
 		return Inertia::render(component: 'Management/CreateUser', props: []);
 	}
 
@@ -36,6 +49,17 @@ class UserManagementController extends Controller
 	 */
 	public function store(Request $request)
 	{
+		/**
+		 * @var \App\Models\User $authenticatedUser
+		 */
+		$authenticatedUser = Auth::user();
+	
+		$canCreateUser = $authenticatedUser->can('user_create');
+	
+		if (!$canCreateUser) {
+			throw new AuthorizationException(message: 'Sorry, you are not allowed to create users.');
+		}
+
 		$request->validate(rules: [
 
 			'name' => 'required|string|max:255',
