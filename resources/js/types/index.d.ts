@@ -9,4 +9,9 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
     auth: {
         user: User;
     };
+		canCreateUser: boolean,
+		canCreatePermission: boolean,
+		canAssignPermission: boolean,
+		canViewInvoices: boolean,
+		canUploadInvoices: boolean
 };

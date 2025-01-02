@@ -18,7 +18,7 @@ administración de usuarios.
 - [x] Dentro de la sección de administración de usuarios se deben poder dar de alta permisos y usuarios,
 y asignar permisos a usuarios
 
-- [ ] La app solo llevará una sección en el menú lateral. Facturas.
+- [x] La app solo llevará una sección en el menú lateral. Facturas.
 
 - [x] En esta sección se debe poder cargar el archivo XML de una factura.
 
@@ -35,7 +35,7 @@ y asignar permisos a usuarios
 
 - [ ] El tipo de cambio del día se debe consultar con la API del Diario oficial de la federación.
 
-- [ ] La visibilidad tanto de la sección de facturas como del botón de carga de facturas, deben estar
+- [x] La visibilidad tanto de la sección de facturas como del botón de carga de facturas, deben estar
 regidos por el permiso "view-invoices" y "upload-invoices".
 
 - [ ] Al terminar de cargar la factura, debe mostrar un mensaje de éxito usando la librería SweetAlert y

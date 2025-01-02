@@ -1,4 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { InvoiceHeader } from '@/modules/invoices/infraestructure/InvoiceHeader';
 import { PageProps } from '@/types';
 
 interface InvoicesPageProps extends PageProps {
@@ -11,7 +12,7 @@ export default function Invoices(props: InvoicesPageProps) {
 
 	return (<AuthenticatedLayout
 		user={auth.user}
-		header={<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Invoices</h2>}
+		header={<InvoiceHeader/>}
 	>
 
 		<h2 className='text-foreground'>
