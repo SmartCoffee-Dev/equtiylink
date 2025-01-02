@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -29,11 +30,20 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+				/**
+				 * @var \App\Models\User $authenticatedUser
+				 */
+				$authenticatedUser = Auth::user();
+
         return [
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
             ],
+						'canCreateUser' => $authenticatedUser && $authenticatedUser->can(abilities: ['user_create']),
+						'canCreatePermission' => $authenticatedUser && $authenticatedUser->can(abilities: ['permission_create']),
+						'canAssignPermission' => $authenticatedUser && $authenticatedUser->can(abilities: ['user_permission_create'])
+
         ];
     }
 }

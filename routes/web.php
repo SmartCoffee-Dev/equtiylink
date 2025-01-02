@@ -29,16 +29,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-		/**
-		 * @var \App\Models\User $authenticatedUser
-		 */
-		$authenticatedUser = Auth::user();
-
-		return Inertia::render('Dashboard', [
-			'canCreateUser' => $authenticatedUser->can('user_create'),
-			'canCreatePermission' => $authenticatedUser->can('permission_create'),
-			'canAssignPermission' => $authenticatedUser->can('user_permission_create'),
-		]);
+		return Inertia::render('Dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

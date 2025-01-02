@@ -18,18 +18,10 @@ class UserManagementController extends Controller
 	 */
 	public function index()
 	{
-		/**
-		 * @var \App\Models\User $authenticatedUser
-		 */
-		$authenticatedUser = Auth::user();
-
 		return Inertia::render(
 			component: 'Management/UserManagement',
 			props: [
 				'users' => User::with(relations: ['permissions'])->get(),
-				'canCreateUser' => $authenticatedUser->can(abilities: ['user_create']),
-				'canCreatePermission' => $authenticatedUser->can(abilities: ['permission_create']),
-				'canAssignPermission' => $authenticatedUser->can(abilities: ['user_permission_create'])
 			]
 		);
 	}
