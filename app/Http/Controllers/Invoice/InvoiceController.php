@@ -11,6 +11,11 @@ use Inertia\Inertia;
 
 class InvoiceController extends Controller
 {
+	public function __construct()
+	{
+		$this->authorizeResource(model: \App\Models\Invoice::class);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 */
