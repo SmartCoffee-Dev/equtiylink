@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Modules\Invoices\Application;
+namespace App\Modules\Invoices\Application;
 
 use App\Modules\Invoices\Domain\CurrencyRateEnum;
 use Exception;
@@ -22,7 +22,6 @@ class CurrencyActions
 		}
 
 		return self::currencyRateFromSerie($currencyCase->name);
-
 	}
 
 	static function currencyRateFromSerie(string $serie): float

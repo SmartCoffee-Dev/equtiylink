@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Modules\Invoices\Application;
+namespace App\Modules\Invoices\Application;
 
 use App\Models\Invoice;
 use Nette\NotImplementedException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Modules\Invoices\Domain;
+namespace App\Modules\Invoices\Domain;
 
 class InvoiceEventNames {
 
