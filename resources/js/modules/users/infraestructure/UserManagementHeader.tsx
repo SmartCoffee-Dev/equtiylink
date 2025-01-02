@@ -1,15 +1,10 @@
-import { PageProps } from '@inertiajs/core';
+import { PageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
 import { Link } from '@nextui-org/react';
 
-interface UserManagementHeaderProps extends PageProps {
-	canCreateUser: boolean,
-	canCreatePermission: boolean
-}
-
 export const UserManagementHeader = () => {
 
-	const { canCreateUser, canCreatePermission } = usePage<UserManagementHeaderProps>().props
+	const { canCreateUser, canCreatePermission } = usePage<PageProps>().props
 
 	return (
 		<div className="flex justify-between">

@@ -4,12 +4,6 @@ import { usePage } from "@inertiajs/react";
 import { Avatar, Link } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
-interface NavbarAuthProps extends PageProps {
-	canCreateUser: boolean,
-	canCreatePermission: boolean,
-	canAssignPermission: boolean
-}
-
 interface NavbarProps {
 
 	showingSidebar: boolean
@@ -21,7 +15,7 @@ interface NavbarProps {
 export const Navbar = (props: NavbarProps) => {
 
 	const { showingSidebar, setShowingSidebar, user } = props
-	const { canCreateUser, canCreatePermission, canAssignPermission } = usePage<NavbarAuthProps>().props
+	const { canCreateUser, canCreatePermission, canAssignPermission } = usePage<PageProps>().props
 	const [isUsersManager, setIsUserManager] = useState(false)
 
 	useEffect(() => {

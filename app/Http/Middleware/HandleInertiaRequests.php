@@ -42,7 +42,9 @@ class HandleInertiaRequests extends Middleware
             ],
 						'canCreateUser' => $authenticatedUser && $authenticatedUser->can(abilities: ['user_create']),
 						'canCreatePermission' => $authenticatedUser && $authenticatedUser->can(abilities: ['permission_create']),
-						'canAssignPermission' => $authenticatedUser && $authenticatedUser->can(abilities: ['user_permission_create'])
+						'canAssignPermission' => $authenticatedUser && $authenticatedUser->can(abilities: ['user_permission_create']),
+						'canViewInvoices' => $authenticatedUser && $authenticatedUser->can(abilities: ['view-invoices']),
+						'canUploadInvoices' => $authenticatedUser && $authenticatedUser->can(abilities: ['upload-invoices'])
 
         ];
     }

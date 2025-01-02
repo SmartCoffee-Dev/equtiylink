@@ -1,11 +1,12 @@
 import { useState, PropsWithChildren, ReactNode, useEffect } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
-import { User } from '@/types';
+import { Link, usePage } from '@inertiajs/react';
+import { PageProps, User } from '@/types';
 import { useWindowSize } from '@/modules/general/infraestructure/useWindowSize';
 import { Navbar } from '@/modules/general/infraestructure/Navbar';
 
 export default function Authenticated({ user, header, children }: PropsWithChildren<{ user: User, header?: ReactNode }>) {
+	const { canViewInvoices } = usePage<PageProps>().props
 	const [showingSidebar, setShowingSidebar] = useState(true);
 	const { width } = useWindowSize()
 
@@ -20,14 +21,15 @@ export default function Authenticated({ user, header, children }: PropsWithChild
 			bg-gray-100 dark:bg-gray-900
 				border-r border-gray-100 dark:border-gray-700
 				transition-all ease-in-out
+				flex-col p-4 gap-4
 				absolute w-dvw z-10 h-dvh
-				sm:static sm:inline-flex sm:w-1/4 sm:z-0
-				${showingSidebar ? 'inline-flex' : 'hidden'}
+				sm:static sm:flex sm:w-1/4 sm:z-0
+				${showingSidebar ? 'flex' : 'hidden'}
 				`}>
 
-				<div className="flex items-center justify-between sm:justify-center p-4 w-full h-fit">
+				<div className="flex items-center justify-between sm:justify-center w-full h-fit">
 
-					<Link href="/" className='flex items-center gap-4 text-foreground'>
+					<Link href="/dashboard" className='flex items-center gap-4 text-foreground'>
 						<ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
 						EquityLink
 					</Link>
@@ -47,6 +49,12 @@ export default function Authenticated({ user, header, children }: PropsWithChild
 						</svg>
 					</button>
 				</div>
+
+				{canViewInvoices &&
+					<Link href={route('invoice.list')} className='text-foreground hover:opacity-80'>
+						Facturas
+					</Link>
+				}
 
 			</aside>
 
