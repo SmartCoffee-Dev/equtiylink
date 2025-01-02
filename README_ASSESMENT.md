@@ -8,7 +8,7 @@ contraseña.
 - [x] Se debe crear una mecánica para manejar los mensajes de error de autorización para mostrarse en
 el back. Por ejemplo con un Toast.
 
-- [ ] Al entrar en la aplicación. Debe mostrar un layout con una barra lateral que maneje el menú principal
+- [x] Al entrar en la aplicación. Debe mostrar un layout con una barra lateral que maneje el menú principal
 y una cabecera donde se muestre el nombre del usuario.
 
 - [x] Se debe implementar la mecánica de roles
