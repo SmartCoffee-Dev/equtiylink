@@ -38,7 +38,7 @@ y asignar permisos a usuarios
 - [x] La visibilidad tanto de la sección de facturas como del botón de carga de facturas, deben estar
 regidos por el permiso "view-invoices" y "upload-invoices".
 
-- [ ] Al terminar de cargar la factura, debe mostrar un mensaje de éxito usando la librería SweetAlert y
+- [x] Al terminar de cargar la factura, debe mostrar un mensaje de éxito usando la librería SweetAlert y
 debe mostrarla en una tabla con las columnas igual a los datos almacenados.
 
 
