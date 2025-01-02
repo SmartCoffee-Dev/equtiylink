@@ -1,17 +1,22 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { Invoice } from '@/modules/invoices/domain/Invoice.interface';
 import { InvoiceEvents } from '@/modules/invoices/domain/InvoiceEvents.enum';
 import { InvoiceHeader } from '@/modules/invoices/infraestructure/InvoiceHeader';
 import { PageProps } from '@/types';
 import { useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { InvoicesTable } from '../../modules/invoices/infraestructure/InvoicesTable';
 
 interface InvoicesPageProps extends PageProps {
-	state: string
+	state: string,
+	invoices: {data: Invoice[]}
 }
 
 export default function Invoices(props: InvoicesPageProps) {
 
-	const { auth, state } = props
+	const { auth, state, invoices } = props
+
+	console.log(invoices)
 
 	useEffect(() => {
 		
@@ -31,6 +36,8 @@ export default function Invoices(props: InvoicesPageProps) {
 		user={auth.user}
 		header={<InvoiceHeader/>}
 	>
+
+		<InvoicesTable invoices={invoices.data}/>
 
 	</AuthenticatedLayout>)
 

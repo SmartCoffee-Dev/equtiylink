@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Invoice;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\InvoiceResource;
+use App\Models\Invoice;
 use App\Modules\Invoices\Application\InvoiceActions;
 use app\Modules\Invoices\Domain\InvoiceEventNames;
 use Illuminate\Http\Request;
@@ -21,7 +23,13 @@ class InvoiceController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		return Inertia::render(component: 'Invoice/Invoices', props: ['state' => $request->state]);
+		return Inertia::render(
+			component: 'Invoice/Invoices',
+			props: [
+				'state' => $request->state,
+				'invoices' => InvoiceResource::collection(Invoice::all())
+			]
+		);
 	}
 
 	/**
@@ -40,9 +48,9 @@ class InvoiceController extends Controller
 		$request->validate([
 			'invoice' => [
 				'required',
-        File::types(['xml'])
-            ->min(0.1)
-            ->max(12)
+				File::types(['xml'])
+					->min(0.1)
+					->max(12)
 			]
 		]);
 
