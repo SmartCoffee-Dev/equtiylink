@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-						$table->uuid();
+						$table->string('uuid');
 						$table->string('folio');
 						$table->string('emisor');
 						$table->string('receptor');
