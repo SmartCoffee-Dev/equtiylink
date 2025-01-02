@@ -1,5 +1,7 @@
 # Ejercicio Fullstack 2024 – Equity Link
 
+## Backlog
+
 - [x] Crear una app que use como frontend ReactJS y como backend una API desarrollada en Laravel
 
 - [x] La aplicación consiste en un dashboard al que se puede entrar por autenticación de email y
@@ -33,7 +35,7 @@ y asignar permisos a usuarios
 • Total
 • Tipo de cambio del día. Este se debe consultar con la API del Diario oficial de la federación.
 
-- [ ] El tipo de cambio del día se debe consultar con la API del Diario oficial de la federación.
+- [x] El tipo de cambio del día se debe consultar con la API del Diario oficial de la federación.
 
 - [x] La visibilidad tanto de la sección de facturas como del botón de carga de facturas, deben estar
 regidos por el permiso "view-invoices" y "upload-invoices".
@@ -47,3 +49,17 @@ Se considerarán.
 • Principios de SOLID
 • Principios de CLEAN CODE
 • Mantenibilidad y escalabilidad del código
+
+## Próximos pasos
+
+- Permitir quitar permisos.
+- Permitir eliminar usarios y permisos.
+- Optimizar la gestión de los permisos por medio de roles.
+- Generar un diccionario con los tipos de cambio de banxico para reducir la carga del usuario.
+- Establecer un design system para el frontend.
+- Habilitar controles avanzados en la tabla de facturas: paginación, búsqueda, filtrado, ordenamiento, etc.
+- Implementar autenticación por tokens.
+- Migrar el backend a una API RESTFUL para separar el backend del frontend en caso de requerirse.
+- Desacoplar y refactorizar.
+- Documentar.
+- Realizar los tests de la aplicación.
