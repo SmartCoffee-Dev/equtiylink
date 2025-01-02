@@ -22,7 +22,13 @@ cd equtiylink
 composer install
 ```
 
-4. Incluir las credenciales para la base de datos en el archivo `.env`
+4. Instalar las dependencias del frontend
+
+```
+npm i
+```
+
+5. Incluir las credenciales para la base de datos en el archivo `.env`
 
 ```
 DB_CONNECTION=
@@ -33,28 +39,28 @@ DB_USERNAME=
 DB_PASSWORD=
 ```
 
-5. Instalar las dependencias del frontend
+6. Ejecutar las migraciones
 
 ```
-npm i
+php artisan migrate
 ```
 
-6. Levantar el servidor del backend
+7. Incluir el token de la api de Banxico en el archivo `.env`
+
+```
+BANXICO_TOKEN=
+```
+
+8. Levantar el servidor del backend
 
 ```
 php artisan serve
 ```
 
-7. Levantar el servidor del frontend
+9. Levantar el servidor del frontend
 
 ```
 npm run dev
-```
-
-8. Ejecutar los seeders de la base de datos
-
-```
-php artisan db:seed
 ```
 
 ## Uso (Local)
