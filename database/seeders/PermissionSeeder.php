@@ -20,7 +20,9 @@ class PermissionSeeder extends Seeder
 			'permission_edit',
 			'permission_list',
 			'user_permission_create',
-			'user_permission_delete'
+			'user_permission_delete',
+			'view-invoices',
+			'upload-invoices'
 		];
 
 		foreach ($permissions as $permission) {
