@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Invoice\InvoiceController;
 use App\Http\Controllers\Management\PermissionManagementController;
 use App\Http\Controllers\Management\UserManagementController;
 use App\Http\Controllers\ProfileController;
@@ -43,6 +44,10 @@ Route::middleware('auth')->group(function () {
 		
 		Route::get(uri: '/management/permissions/create', action: [PermissionManagementController::class, 'create'])->name('permission.create');
 		Route::post(uri: '/management/permissions', action: [PermissionManagementController::class, 'store'])->name('permission.store');
+
+		Route::get(uri: 'invoices', action: [InvoiceController::class, 'index'])->name('invoice.list');
+		Route::get(uri: 'invoices/create', action: [InvoiceController::class, 'create'])->name('invoice.create');
+		Route::post(uri: 'invoices', action: [InvoiceController::class, 'store'])->name('invoice.store');
 });
 
 require __DIR__.'/auth.php';
