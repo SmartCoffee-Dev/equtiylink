@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice;
 use App\Modules\Invoices\Application\InvoiceActions;
-use app\Modules\Invoices\Domain\InvoiceEventNames;
+use App\Modules\Invoices\Domain\InvoiceEventNames;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 use Inertia\Inertia;
@@ -51,13 +51,21 @@ class InvoiceController extends Controller
 				File::types(['xml'])
 					->min(0.1)
 					->max(12)
-			]
+			],
+			'serie_de_cambio' => ['string', 'between:2,10']
 		]);
-
+		
 		$file = $request->file('invoice');
 		$xmlContent = $file->getContent();
-
+		
 		$invoice = InvoiceActions::xmlContentToInvoice($xmlContent);
+
+		InvoiceActions::setCurrencyRate(
+			invoice: $invoice,
+			code: $invoice->moneda,
+			serie: $request->serie_de_cambio === null || strlen($request->serie_de_cambio) == 0 ? null : $request->serie_de_cambio
+		);
+
 		$invoice->save();
 
 		return redirect(to: route('invoice.list', ['state' => InvoiceEventNames::InvoiceWasCreated]));

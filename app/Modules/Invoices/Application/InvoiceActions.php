@@ -50,4 +50,21 @@ class InvoiceActions
 	{
 		throw new NotImplementedException();
 	}
+
+	static function setCurrencyRate(Invoice $invoice, string $code = "MXN", string $serie = null)
+	{
+
+		if ($code === "MXN" && !isset($serie)) {
+			$invoice->tasa_de_cambio = 1;
+			return;
+		}
+
+		if ($code !== "MXN" && !isset($serie)) {
+			CurrencyActions::validateCurrencyCode(code: $invoice->moneda, fieldAlias: 'currency');
+			$invoice->tasa_de_cambio = CurrencyActions::currencyRateFromCode($code);
+			return;
+		}
+
+		$invoice->tasa_de_cambio = CurrencyActions::currencyRateFromSerie($serie);
+	}
 }

@@ -5,6 +5,8 @@ namespace App\Modules\Invoices\Application;
 use App\Modules\Invoices\Domain\CurrencyRateEnum;
 use Exception;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class CurrencyActions
 {
@@ -42,5 +44,30 @@ class CurrencyActions
 		$jsonResponse = $response->json();
 
 		return (float) $jsonResponse['bmx']['series'][0]['datos'][0]['dato'];
+	}
+
+	static function validateCurrencyCode(string $code, string $fieldAlias = 'moneda')
+	{
+
+		$cases = CurrencyRateEnum::cases();
+		$codes = [];
+
+		foreach ($cases as $currencyCase) {
+			array_push($codes, $currencyCase->value);
+		}
+
+		$validator = Validator::make(
+			data: [
+				$fieldAlias => $code
+			],
+			rules: [
+				$fieldAlias => [Rule::in($codes)]
+			],
+			messages: [
+				"$fieldAlias.in" => "Unsupported currency code. Please, provide the corresponding Banxico's serie."
+			]
+		);
+
+		$validator->validate();
 	}
 }

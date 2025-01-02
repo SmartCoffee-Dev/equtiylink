@@ -7,6 +7,11 @@ import { Head, useForm } from '@inertiajs/react';
 import { Button } from '@nextui-org/react';
 import { FormEventHandler } from 'react';
 
+interface InvoiceForm {
+	invoice?: File,
+	currency?: string,
+	serie_de_cambio?: string
+}
 
 export default function UploadInvoice(props: PageProps) {
 
@@ -18,10 +23,7 @@ export default function UploadInvoice(props: PageProps) {
 		progress,
 		processing,
 		errors
-	} = useForm<{ invoice?: File }>({
-		invoice: undefined
-	})
-
+	} = useForm<InvoiceForm>()
 
 	const submit: FormEventHandler = (e) => {
 
@@ -59,6 +61,21 @@ export default function UploadInvoice(props: PageProps) {
 				/>
 
 				<InputError message={errors.invoice} className="mt-2" />
+			</div>
+
+			<div>
+				<InputLabel htmlFor="serie_de_cambio" value="Serie de Banxico" />
+
+				<TextInput
+					id="serie_de_cambio"
+					type='text'
+					name="serie_de_cambio"
+					className="mt-1 block w-full"
+					onChange={e => setData('serie_de_cambio', e.target.value)}
+				/>
+
+				<InputError message={errors.currency} className="mt-2" />
+				<InputError message={errors.serie_de_cambio} className="mt-2" />
 			</div>
 
 			{progress && (
